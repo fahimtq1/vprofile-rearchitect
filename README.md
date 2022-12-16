@@ -30,6 +30,8 @@ These are the basic steps of the application workflow:
 
 ### Original cloud architecture
 
+This mimics the application architecture, except the services are replaced with the AWS services, with the EC2 instances acting as both the backend and frontend servers
+
 ![vprofile-cloud-architecture](https://user-images.githubusercontent.com/99980305/202738252-d0a9176b-7e8f-42fe-a734-449985724cbc.png)
 
 #### Services
@@ -56,3 +58,52 @@ These are the basic steps of the application workflow:
 - Route 53
 - CloudFront
 - CloudWatch (optional monitoring capabilities)
+
+#### Re-architected cloud architecture explained
+
+- Users make HTTP requests to a domain name (application webpage)
+- Route 53 (DNS) directs these requests to the relevant IP addresses 
+- CloudFront is a Content Delivery Network (CDN), which speeds up the requests journey to reduce latency
+- The requests are routed to the Elastic Beanstalk (PaaS) container, which handles the deployment and management of the application
+- Elastic Beanstalk deals with the load balancing, autoscaling, and health-monitoring of the application
+- The EC2 instances, used by Elastic Beanstalk, will retrieve data from an S3 bucket that has all the application files stored within it
+- The backend services will use the following: RDS, ElastiCache (for Memcached) and Amazon MQ
+- These backend services will communicate with the EC2 instances to provide the content to the end-users
+
+## Cloud setup
+
+### Plan
+
+The basic flow of execution is as follows:
+
+- Login to AWS
+- Create a key pair for secure access to the Elastic Beanstalk instance
+- Create security groups for ElastiCache, RDS and Amazon MQ
+- Create the ELastic Beanstalk environment
+- Update the security group of the backend services to allows traffic from the Elastic Beanstalk security group
+- Update the security group of the backend services to allow internal traffic between the backend services
+- Launch an EC2 instance to initialise the RDS database
+- Build the application source code artefact locally and deploy to Elastic Beanstalk
+- Create a CDN with an SSL certificate
+- Update the CNAME record on chosen webhost (using GoDaddy)
+- Test the URL
+
+### Steps
+
+#### Security groups and key pairs
+
+#### RDS
+
+#### ElastiCache
+
+#### Amazon MQ
+
+#### Database initialisation 
+
+#### Elastic Beanstalk
+
+#### Update security groups
+
+#### Build and deploy the artefact
+
+#### CloudFront
