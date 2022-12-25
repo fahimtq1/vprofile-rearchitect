@@ -12,7 +12,7 @@ The scenario is of a DevOps engineer who has been given a multi-tier application
 
 Fortunately, the cloud offers a range of benefits that solve this problem. The solution is to utilise SaaS and PaaS services, instead of the previous IaaS services. Thus, this would lead to lower operational overhead, the exchange of capital expenses with operational expenses, easier infrastructure management and automation. 
 
-The main goal of this task is to implement the "re-architect" cloud migration strategy. Re-architecting is the process of breaking an application down and designing it's framework, so that it takes advantage of cloud-native features. This is in contrast to the [Lift-and-Shift](https://github.com/fahimtq1/vprofile-cloud-project/blob/main/README.md) strategy, as it is more time-consuming and requires a deeper knowledge of cloud services. 
+The main goal of this task is to implement the "re-architect" cloud migration strategy. Re-architecting is the process of breaking an application down and designing it's framework, so that it takes advantage of cloud-native features. This is in contrast to the [Lift-and-Shift](https://github.com/fahimtq1/vprofile-cloud-project/blob/main/README.md) strategy, as it is more time-consuming and requires a deeper knowledge of cloud services.
 
 ## Architectures
 
@@ -91,6 +91,10 @@ The basic flow of execution is as follows:
 ### Steps
 
 #### Security groups and key pairs
+
+- Navigate to the EC2 console and create a key pair, which will be used to access the Elastic Beanstalk instance. 
+- Create a security group with a dummy rule, so later on this rule can allow internal traffic access between the backend services that use the same security group
+    - This can only be done once the security group has been made
 
 #### RDS
 
