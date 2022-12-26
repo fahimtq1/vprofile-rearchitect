@@ -98,6 +98,47 @@ The basic flow of execution is as follows:
 
 #### RDS
 
+- Navigate to the RDS console
+
+- Go to Subnet groups on the left menu
+- Select Create DB subnet group
+- Provide an appropriate name
+- Select the default VPC
+- Select all the Availability Zones and all the Subnets- this allows resiliency
+- Create the subnet group
+
+- Go to Parameter groups in the left menu
+- Select Create parameter group
+- Select `aurora-mysql5.7` as the parameter group family
+- Provide an appropriate name
+- Create the parameter group
+
+- Go to Databases in the left menu
+- Select Create database
+- For the database creation method, select Standard create
+- Engine options:
+
+    - Engine type- MySQL
+    - Edition- Amazon Aurora MySQL-Compatible Edition
+    - Version- 5.7.22
+
+- Template- Dev/Test
+- Provide an apporpriate name
+- Master username- admin
+- Select Auto generate password
+- Instance configuration:
+
+    - DB instance class- Burstable classes t3.micro
+
+- Storage configurations remain default, but ensure the Enable storage autoscaling option is enabled
+- Select the relevant DB subnet group (created earlier)
+- Select No public access
+- Select the relevant security group (created earlier)
+- Select enable enhanced monitoring under Monitoring, with 60 seconds of granularity
+- In Additional configuration, select the relevant parameter group (created earlier)
+- Create the database
+- Once the instance has been made, the credentials should be saved locally (perhaps a `.txt` file)
+
 #### ElastiCache
 
 #### Amazon MQ
