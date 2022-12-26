@@ -198,10 +198,11 @@ The basic flow of execution is as follows:
 		- Provide an appropriate name (e.g. mysql-client-sg)
 		- Allow SSH traffic from my IP
 	- Advanced details: user data
-		- `#!/bin/bash`
-		- `sudo apt update && sudo apt upgrade -y`
-		- `sudo apt install mysql-client -y`
+	
+userdata![userdata](https://user-images.githubusercontent.com/99980305/209560040-2ceb51a4-e407-4543-ba21-a6093377be1c.png)
+
 	- Launch instance
+	
 - login instance
 - mysql -h (rds-endpoint) -u (username) -p (password)   -> -h is the host
 - edit backeng sg to allow port 3306 from mysql-client sg
