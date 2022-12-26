@@ -166,23 +166,54 @@ The basic flow of execution is as follows:
 
 #### Amazon MQ
 
-- amazon mq console
-- get started
-- rabbit mq
-- single-instance broker (select cluster deployment for production workload)
-- vprofile-rmq
-- t3.micro
-- rabbit usernam
-- password
-- 3.9.16 broker engine version
-- deselect cloudwatch logs
-- private access network and security
-- use default vpc and subnets
-- backend sg
-- enable auto minor version upgrades
-- no pref maintenance window
+- Navigate to the Amazon MQ console
+- Select Get started
+- Broker enginer type- RabbitMQ
+- Deployment mode- Single-instance broker (used for Dev/Test)
+- Provide an appropriate name
+- Broker instance type- t3.micro
+- Username- rabbit
+- Password- password1234
+- Additional settings:
+    - Broker engine version- 3.9.16
+    - Deselect CloudWatch Logs option
+    - Access type- Private access (note- some options can't be seen unless this is selected)
+    - Use default VPC and subnets
+    - Select the relevant security group
+    - Enable automatic minor version upgrades
+    - Maintenance window- no preference
+- Create broker
 
-#### Database initialisation 
+#### Database initialisation
+
+- Navigate to the RDS console
+- Go to Databases instances details section and copy the endpoint
+- Navigate to the EC2 console
+	- Launch instances- this will be a temporary instance to intialise the database
+	- Provide an appropriate name (e.g. mysql-client)
+	- OS- Ubuntu 18.04 LTS
+	- Instance type- t2.micro
+	- Select the relevant key pair
+	- Create security group
+		- Provide an appropriate name (e.g. mysql-client-sg)
+		- Allow SSH traffic from my IP
+	- Advanced details: user data
+		- `#!/bin/bash`
+		- `sudo apt update && sudo apt upgrade -y`
+		- `sudo apt install mysql-client -y`
+	- Launch instance
+- login instance
+- mysql -h (rds-endpoint) -u (username) -p (password)   -> -h is the host
+- edit backeng sg to allow port 3306 from mysql-client sg
+- show databases;
+- git clone (source code)
+- cd vprofile-project
+- git checkout aws-Refactor
+- cd src/main/resources
+- mysql -h (rds-endpoint) -u (username) -p (password) accounts < db_backup.sql  -> initialises database with db_backeup.sql schema
+- mysql -h (rds-endpoint) -u (username) -p (password) accounts
+- show tables;
+	- should be 3 tables
 
 #### Elastic Beanstalk
 
