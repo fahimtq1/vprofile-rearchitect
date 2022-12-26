@@ -141,7 +141,46 @@ The basic flow of execution is as follows:
 
 #### ElastiCache
 
+- Navigate to the ElastiCache console
+- Select Parameter groups in the left menu and create
+	- Provide an appropriate name
+	- Family- memcached1.4
+	- Create
+- Select Subnet groups in the left menu and create
+	- Provide an appropriate name
+	- Select the default VPC ID
+	- Select all Availability Zones
+	- Create
+- Select Memcached clusters in the left menu and create
+    - Location- AWS Cloud
+    - Provide an appropriate name
+    - Engine version- 1.4
+    - Select the relevant parameter group
+    - Node type- t2.micro
+    - Number of nodes- 1 node
+    - Select the relevant subnet group
+    - No preference regarding the Availability Zone
+    - Select the relevant security group
+    - No preference regarding the maintenance window
+    - Create
+
 #### Amazon MQ
+
+- amazon mq console
+- get started
+- rabbit mq
+- single-instance broker (select cluster deployment for production workload)
+- vprofile-rmq
+- t3.micro
+- rabbit usernam
+- password
+- 3.9.16 broker engine version
+- deselect cloudwatch logs
+- private access network and security
+- use default vpc and subnets
+- backend sg
+- enable auto minor version upgrades
+- no pref maintenance window
 
 #### Database initialisation 
 
