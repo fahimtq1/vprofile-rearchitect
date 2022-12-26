@@ -217,6 +217,49 @@ The basic flow of execution is as follows:
 
 #### Elastic Beanstalk
 
+- Copy the RDS instance endpoint
+- Copy the Amazon MQ instance endpoint and port number
+- Copy the ElastiCache instance endpoint and port number
+- Navigate to the Elastic Beanstalk console
+	- Create application
+	- Provide an appropriate namme (e.g. vprofile-java-app)
+	- Provide appropriate tags (if desired)
+	- Platform- Tomcat 8.5 Corretto 11
+	- Select Sample application
+	- Configure more options
+	- Presets- Custom configuration
+	- Instances
+		- Select the backend security group
+		- Root volume type- default
+	- Capacity
+		- Auto scaling group- minimum 2 instances and maximum 4
+		- Instance types- t2.micro
+		- Availability Zone- Any
+		- Scaling triggers
+			- NetworkOut
+	- Rolling updates and deployments
+		- Deployment policy- Rolling at 50%
+	- Security 
+		- EC2 key pair- beanstalk launches ec2 instance
+		- Create instance profile
+	- Create app
+- Once the application has been created
+	- Click on app id
+	- environment in terminated state
+	- error is instance profile value associated with environment is invalid
+	- create new environment
+		- web server environment
+		- vprofile-java-app
+		- environment name
+			- vprofilejavaapp-prod
+			- same for domain
+		- tomcat platform
+		- basically redo previous steps
+	- fails as there was no service role
+		- now there is a service role so it has permissions to access other services
+		- under iam instance profile select aws-elasticbeanstalk-ec2-role otherwise leave it blank
+	- create environment
+
 #### Update security groups
 
 #### Build and deploy the artefact
