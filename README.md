@@ -199,22 +199,21 @@ The basic flow of execution is as follows:
 		- Allow SSH traffic from my IP
 	- Advanced details: user data
 	
-userdata![userdata](https://user-images.githubusercontent.com/99980305/209560040-2ceb51a4-e407-4543-ba21-a6093377be1c.png)
+![userdata](https://user-images.githubusercontent.com/99980305/209560040-2ceb51a4-e407-4543-ba21-a6093377be1c.png)
 
 	- Launch instance
 	
-- login instance
-- mysql -h (rds-endpoint) -u (username) -p (password)   -> -h is the host
-- edit backeng sg to allow port 3306 from mysql-client sg
-- show databases;
-- git clone (source code)
-- cd vprofile-project
-- git checkout aws-Refactor
-- cd src/main/resources
-- mysql -h (rds-endpoint) -u (username) -p (password) accounts < db_backup.sql  -> initialises database with db_backeup.sql schema
-- mysql -h (rds-endpoint) -u (username) -p (password) accounts
-- show tables;
-	- should be 3 tables
+- Login instance via SSH access
+- `mysql -h (rds-endpoint) -u (username) -p (password)`- `-h` is the host
+- Edit the backend security group to allow access via port 3306 from the mysql-client security group
+- `show databases;`
+- `git clone (source code)`
+- `cd vprofile-project`
+- `git checkout aws-Refactor`
+- `cd src/main/resources`
+- `mysql -h (rds-endpoint) -u (username) -p (password) accounts < db_backup.sql`- initialises database with `db_backup.sql` schema in this file location
+- `mysql -h (rds-endpoint) -u (username) -p (password) accounts`
+- `show tables;`- three tables should be shown if the process has been performed correctly
 
 #### Elastic Beanstalk
 
