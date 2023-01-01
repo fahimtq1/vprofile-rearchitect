@@ -281,12 +281,13 @@ The basic flow of execution is as follows:
 
 #### Build and deploy the artefact
 
-- `git clone` source code from this [repository](https://github.com/devopshydclub/vprofile-project/tree/aws-Refactor)
-- cd vprofile-project
-- git checkout aws-Refactor
-- cd src/main/resources
-- nano application.properties
-	- update the details accordingly
+- `git clone` source code from this [repository](https://github.com/devopshydclub/vprofile-project/tree/aws-Refactor) onto local machine
+- `cd vprofile-project`- in the location in which the repository was cloned
+- `git checkout aws-Refactor`
+- `cd src/main/resources`
+- `nano application.properties`
+	- Update the details accordingly by pasting the RDS, ElastiCache and Amazon MQ endpoints into the appropriate areas
+	- Paste the correct username and password details for each backend service
 - mvn install
 	- pom.xml location
 - ls target 
