@@ -222,7 +222,7 @@ The basic flow of execution is as follows:
 - Copy the ElastiCache instance endpoint and port number
 - Navigate to the Elastic Beanstalk console
 	- Create application
-	- Provide an appropriate namme (e.g. vprofile-java-app)
+	- Provide an appropriate name (e.g. vprofile-java-app)
 	- Provide appropriate tags (if desired)
 	- Platform- Tomcat 8.5 Corretto 11
 	- Select Sample application
@@ -244,23 +244,40 @@ The basic flow of execution is as follows:
 		- Create instance profile
 	- Create app
 - Once the application has been created
-	- Click on app id
-	- environment in terminated state
-	- error is instance profile value associated with environment is invalid
-	- create new environment
-		- web server environment
-		- vprofile-java-app
-		- environment name
-			- vprofilejavaapp-prod
-			- same for domain
-		- tomcat platform
-		- basically redo previous steps
-	- fails as there was no service role
-		- now there is a service role so it has permissions to access other services
-		- under iam instance profile select aws-elasticbeanstalk-ec2-role otherwise leave it blank
-	- create environment
+	- Click on the application ID
+	- The environment is in a terminated state
+	- The error is due to the fact that the instance profile value, that is associated with the environment, environment is invalid
+- Select Create a new environment
+	- Select Web server environment
+	- Provide an appropriate application name (e.g. same as application name)
+	- Provide an appropriate environment name (e.g. vprofilejavaapp-prod)
+		- Use the same name for the domain
+	- Platform- Tomcat 8.5 Corretto 11
+	- Redo the aforementioned earlier steps
+		- This failed as there was no service role
+			- Now there is a service IAM role, so it has permissions to access other services
+			- Under IAM instance profile in Security, select aws-elasticbeanstalk-ec2-role, otherwise leave it blank
+- Create environment
 
 #### Update security groups
+
+- Navigate to the EC2 console
+- Edit the preiviously made security group (i.e. the backend security group)
+	- Allow an inbound rule for the Beanstalk instances to connect to the backend services
+	- Port 3306 access from the Beanstalk security group
+	- Port 11211 access from the Beanstalk security group
+	- Port 5671 access from the Beanstalk security group
+	- Could allow all traffic from the Beanstalk security group- this is a simple rule but security best practices dictate that there should be specific rules defined
+- Navigate to the Elastic Beanstalk console
+- Select the created environment ID
+	- Go to Configuration in the left menu
+	- Go to Load balancer settings
+	- Under Listeners add port 80 and port 443 choose the certificate of your chosen domain
+	- Under Processes 
+		- Perform health checks in the URL path with `/login` 
+		- Select Enable stickiness policy
+	- apply
+- The environment health will change to severe, as the application hasn't been deployed for the health checks to pass- it will be healthy once the artifact has been deployed
 
 #### Build and deploy the artefact
 
