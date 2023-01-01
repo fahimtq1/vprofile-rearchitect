@@ -288,6 +288,10 @@ The basic flow of execution is as follows:
 - `nano application.properties`
 	- Update the details accordingly by pasting the RDS, ElastiCache and Amazon MQ endpoints into the appropriate areas
 	- Paste the correct username and password details for each backend service
+- The `application.properties` file amendments can be followed as seen in the comments below:
+
+![application properties](https://user-images.githubusercontent.com/99980305/210174385-3fe0d019-f2de-453a-907f-51da70044150.png)
+
 - mvn install
 	- pom.xml location
 - ls target 
