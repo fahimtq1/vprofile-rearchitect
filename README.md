@@ -281,4 +281,26 @@ The basic flow of execution is as follows:
 
 #### Build and deploy the artefact
 
+- `git clone` source code from this [repository](https://github.com/devopshydclub/vprofile-project/tree/aws-Refactor)
+- cd vprofile-project
+- git checkout aws-Refactor
+- cd src/main/resources
+- nano application.properties
+	- update the details accordingly
+- mvn install
+	- pom.xml location
+- ls target 
+	- the artifact will be uploaded to beanstalk environment
+- beanstalk console
+- application version
+- upload
+- choose file with appropriate name
+- uploads to s3 bucket automatically
+- select the application version
+	- action deploy to the selected environment
+- environments
+	- events- can see the logs of events in the environment
+- the application now works if click on the environment endpoint
+- dns endpoint- godaddy cname record with environment endpoint
+
 #### CloudFront
