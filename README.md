@@ -1,5 +1,7 @@
 # Re-Architecting an Application on the AWS Cloud
 
+![Refactor on AWS](https://user-images.githubusercontent.com/99980305/210175970-7792e512-8de0-43f0-bbe1-0ac483a93560.png)
+
 This application was inspired by devopshydclub repository found [here](https://github.com/devopshydclub/vprofile-project)
 
 You can see the most used languages in this project below:
