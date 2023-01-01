@@ -292,20 +292,25 @@ The basic flow of execution is as follows:
 
 ![application properties](https://user-images.githubusercontent.com/99980305/210174385-3fe0d019-f2de-453a-907f-51da70044150.png)
 
-- mvn install
-	- pom.xml location
-- ls target 
-	- the artifact will be uploaded to beanstalk environment
-- beanstalk console
-- application version
-- upload
-- choose file with appropriate name
-- uploads to s3 bucket automatically
-- select the application version
-	- action deploy to the selected environment
-- environments
-	- events- can see the logs of events in the environment
-- the application now works if click on the environment endpoint
-- dns endpoint- godaddy cname record with environment endpoint
+- `mvn install`- in the `pom.xml` file location
+- `ls target`- the artifact, `vprofile-v2.war`, will be uploaded to the Elastic Beanstalk environment
+- Navigate to the Elastic Beanstalk console and click on Application versions in the left menu
+- Under Application version, click upload
+- Choose the artefact file 
+- This uploads to an S3 bucket automatically
+- Select the application version, then action and deploy to the correct environment
+- In environments (left menu)
+	- Under Recent events the logs of the events in that environment can be viewed
+- The application now works and can be accessed by clicking on the environment endpoint
+- Can navigate to the chosen domain name provider and add a CNAME record with the environment endpoint
 
 #### CloudFront
+
+- Navigate to the CloudFront console
+- Click Create a CloudFront distribution
+- Origin
+	- Origin domain should have the domain name
+- Protocol- Match viewer
+- Allowed HTTP methods- All
+- Price class- Use all edge locations
+- Create distribution
